@@ -8,6 +8,7 @@ import {
   ScrollView,
   ImageBackground,
   Image,
+  Pressable,
 } from 'react-native';
 
 import planes from '../assets/Images/smurfs.jpg';
@@ -16,9 +17,11 @@ import profile from '../assets/Images/profile.jpg';
 import notProfile from '../assets/Images/notProfile.jpeg';
 import Icon from '../assets/Images/envelope.png';
 
+import Back from '../assets/Images/back.png';
+
 const array = ['first', 'second', 'third', 'fourth', 'fifth'];
 
-const SecondScreen = () => {
+const SecondScreen = ({navigation}) => {
   const [currentTab, setCurrentTab] = React.useState({
     physical: true,
     digital: false,
@@ -26,133 +29,160 @@ const SecondScreen = () => {
   });
 
   return (
-    <View style={styles.container}>
-      <View style={styles.containerFirst}>
-        <Image
-          source={Icon}
-          style={{height: 30, width: 30, marginBottom: 20}}
-        />
-        <Text>Find the best deals on our market place</Text>
+    <>
+      <View style={{margin: 30}}>
+        <Pressable
+          onPress={() => navigation.navigate('First')}
+          style={{flexDirection: 'row'}}>
+          <Image
+            source={Back}
+            style={{
+              height: 20,
+              width: 20,
+              borderRadius: 10,
+              backgroundColor: 'rgba(0,0,0,0.1)',
+              marginRight: 5,
+            }}
+          />
+          <Text style={{fontWeight: '900', fontSize: 15}}>
+            Carbon Marketplace
+          </Text>
+        </Pressable>
       </View>
-      <View style={styles.tabContainer}>
-        <TouchableOpacity
-          onPress={() =>
-            setCurrentTab({blockChain: false, physical: true, digital: false})
-          }
-          style={[
-            styles.buttonContainer,
-            {backgroundColor: currentTab.physical ? 'black' : 'transparent'},
-          ]}>
-          <Text style={{color: currentTab.physical ? 'white' : 'black'}}>
-            Physical goods
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            setCurrentTab({blockChain: false, physical: false, digital: true})
-          }
-          style={[
-            styles.buttonContainer,
-            {backgroundColor: currentTab.digital ? 'black' : 'transparent'},
-          ]}>
-          <Text style={{color: currentTab.digital ? 'white' : 'black'}}>
-            Digital goods
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            setCurrentTab({blockChain: true, physical: false, digital: false})
-          }
-          style={[
-            styles.buttonContainer,
-            {backgroundColor: currentTab.blockChain ? 'black' : 'transparent'},
-          ]}>
-          <Text style={{color: currentTab.blockChain ? 'white' : 'black'}}>
-            BlockChain goods
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <ScrollView style={styles.scrollBarStyle}>
-        {currentTab.physical && (
-          <>
-            {array.map((val, index) => {
-              return (
-                <ImageBackground
-                  source={planes}
-                  style={styles.ImageBackContainer}
-                  key={index}
-                  imageStyle={styles.imageStyler}>
-                  <View style={styles.topImage}>
-                    <View style={styles.pillGreen}>
-                      <Text style={styles.textStyle}>1000</Text>
-                    </View>
-                    <View style={styles.pillRed}>
-                      <Text style={styles.textStyle}>remaining</Text>
-                    </View>
-                  </View>
-                  <View style={styles.ImageBody}>
-                    <Text style={styles.textTitleStyle}>
-                      Carpool to save 100kg in CO2 emissions
-                    </Text>
-                    <Text style={styles.textStyle}>
-                      Share in 3000 Carbon credits bet made for this goal.
-                    </Text>
-                  </View>
-                  <View style={styles.bottomImage}>
-                    <View>
-                      <Text style={styles.textStyle}>Goal</Text>
-                      <Text style={styles.textTitleStyle}>100 EV Carpools</Text>
-                      <View style={styles.progressContainer}>
-                        <View style={styles.progressBar} />
+      <View style={styles.container}>
+        <View style={styles.containerFirst}>
+          <Image
+            source={Icon}
+            style={{height: 30, width: 30, marginBottom: 20}}
+          />
+          <Text>Find the best deals on our market place</Text>
+        </View>
+        <View style={styles.tabContainer}>
+          <TouchableOpacity
+            onPress={() =>
+              setCurrentTab({blockChain: false, physical: true, digital: false})
+            }
+            style={[
+              styles.buttonContainer,
+              {backgroundColor: currentTab.physical ? 'black' : 'transparent'},
+            ]}>
+            <Text style={{color: currentTab.physical ? 'white' : 'black'}}>
+              Physical goods
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              setCurrentTab({blockChain: false, physical: false, digital: true})
+            }
+            style={[
+              styles.buttonContainer,
+              {backgroundColor: currentTab.digital ? 'black' : 'transparent'},
+            ]}>
+            <Text style={{color: currentTab.digital ? 'white' : 'black'}}>
+              Digital goods
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              setCurrentTab({blockChain: true, physical: false, digital: false})
+            }
+            style={[
+              styles.buttonContainer,
+              {
+                backgroundColor: currentTab.blockChain
+                  ? 'black'
+                  : 'transparent',
+              },
+            ]}>
+            <Text style={{color: currentTab.blockChain ? 'white' : 'black'}}>
+              BlockChain goods
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <ScrollView style={styles.scrollBarStyle}>
+          {currentTab.physical && (
+            <>
+              {array.map((val, index) => {
+                return (
+                  <ImageBackground
+                    source={planes}
+                    style={styles.ImageBackContainer}
+                    key={index}
+                    imageStyle={styles.imageStyler}>
+                    <View style={styles.topImage}>
+                      <View style={styles.pillGreen}>
+                        <Text style={styles.textStyle}>1000</Text>
+                      </View>
+                      <View style={styles.pillRed}>
+                        <Text style={styles.textStyle}>remaining</Text>
                       </View>
                     </View>
-                    <View>
-                      <Text style={styles.textStyle}>Participating</Text>
-                      <View style={styles.avatarContainer}>
-                        <ImageBackground
-                          source={profile}
-                          style={[styles.avatar, styles.indexingAvatar]}
-                          imageStyle={styles.imageAvatar}
-                        />
-                        <ImageBackground
-                          source={notProfile}
-                          style={styles.avatar}
-                          imageStyle={styles.imageAvatar}
-                        />
-                        <View style={styles.customAvatar}>
-                          <Text style={styles.customAvatarText}>12K</Text>
+                    <View style={styles.ImageBody}>
+                      <Text style={styles.textTitleStyle}>
+                        Carpool to save 100kg in CO2 emissions
+                      </Text>
+                      <Text style={styles.textStyle}>
+                        Share in 3000 Carbon credits bet made for this goal.
+                      </Text>
+                    </View>
+                    <View style={styles.bottomImage}>
+                      <View>
+                        <Text style={styles.textStyle}>Goal</Text>
+                        <Text style={styles.textTitleStyle}>
+                          100 EV Carpools
+                        </Text>
+                        <View style={styles.progressContainer}>
+                          <View style={styles.progressBar} />
+                        </View>
+                      </View>
+                      <View>
+                        <Text style={styles.textStyle}>Participating</Text>
+                        <View style={styles.avatarContainer}>
+                          <ImageBackground
+                            source={profile}
+                            style={[styles.avatar, styles.indexingAvatar]}
+                            imageStyle={styles.imageAvatar}
+                          />
+                          <ImageBackground
+                            source={notProfile}
+                            style={styles.avatar}
+                            imageStyle={styles.imageAvatar}
+                          />
+                          <View style={styles.customAvatar}>
+                            <Text style={styles.customAvatarText}>12K</Text>
+                          </View>
                         </View>
                       </View>
                     </View>
+                  </ImageBackground>
+                );
+              })}
+            </>
+          )}
+          {currentTab.blockChain && (
+            <View style={styles.cardContainer}>
+              {array.map((val, index) => {
+                return (
+                  <View key={index} style={styles.SecondCard}>
+                    <Image source={planes} style={styles.CardImage} />
+                    <View style={{marginTop: 10}}>
+                      <Text style={{fontWeight: 'bold'}}>Clementina #45</Text>
+                      <Text style={{fontSize: 13}}>Pablo Picasso</Text>
+                    </View>
+                    <View style={styles.cardFooter}>
+                      <Text style={{fontWeight: 'bold', color: '#53b456'}}>
+                        O 45
+                      </Text>
+                      <Text style={{fontWeight: 'bold'}}>N</Text>
+                    </View>
                   </View>
-                </ImageBackground>
-              );
-            })}
-          </>
-        )}
-        {currentTab.blockChain && (
-          <View style={styles.cardContainer}>
-            {array.map((val, index) => {
-              return (
-                <View key={index} style={styles.SecondCard}>
-                  <Image source={planes} style={styles.CardImage} />
-                  <View style={{marginTop: 10}}>
-                    <Text style={{fontWeight: 'bold'}}>Clementina #45</Text>
-                    <Text style={{fontSize: 13}}>Pablo Picasso</Text>
-                  </View>
-                  <View style={styles.cardFooter}>
-                    <Text style={{fontWeight: 'bold', color: '#53b456'}}>
-                      O 45
-                    </Text>
-                    <Text style={{fontWeight: 'bold'}}>N</Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
-        )}
-      </ScrollView>
-    </View>
+                );
+              })}
+            </View>
+          )}
+        </ScrollView>
+      </View>
+    </>
   );
 };
 
@@ -211,7 +241,7 @@ const styles = StyleSheet.create({
   },
   scrollBarStyle: {
     padding: 10,
-    marginBottom: 120,
+    marginBottom: 200,
   },
   //
   topImage: {

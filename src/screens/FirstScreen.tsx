@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Dimensions,
   Image,
+  Pressable,
 } from 'react-native';
 
 import planes from '../assets/Images/smurfs.jpg';
@@ -16,93 +17,114 @@ import notProfile from '../assets/Images/notProfile.jpeg';
 import Icon from '../assets/Images/envelope.png';
 import Alarm from '../assets/Images/alarm-clock.png';
 
+import Back from '../assets/Images/back.png';
+
 const array = ['first', 'second', 'third', 'fourth', 'fifth'];
 
 const FirstScreen = ({navigation}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.containerFirst}>
-        <Image
-          source={Icon}
-          style={{height: 30, width: 30, marginBottom: 20}}
-        />
-        <Text>Complete quests score Carbon Credits</Text>
+    <>
+      <View style={{margin: 30}}>
+        <Pressable
+          onPress={() => navigation.navigate('Second')}
+          style={{flexDirection: 'row'}}>
+          <Image
+            source={Back}
+            style={{
+              height: 20,
+              width: 20,
+              borderRadius: 10,
+              backgroundColor: 'rgba(0,0,0,0.1)',
+              marginRight: 5,
+            }}
+          />
+          <Text style={{fontWeight: '900', fontSize: 15}}>Carbon Quests</Text>
+        </Pressable>
       </View>
-      <View style={styles.containerSecond}>
-        <View style={{width: '20%'}}>
-          <Image source={Icon} style={{height: 30, width: 30}} />
+      <View style={styles.container}>
+        <View style={styles.containerFirst}>
+          <Image
+            source={Icon}
+            style={{height: 30, width: 30, marginBottom: 20}}
+          />
+          <Text>Complete quests score Carbon Credits</Text>
         </View>
+        <View style={styles.containerSecond}>
+          <View style={{width: '20%'}}>
+            <Image source={Icon} style={{height: 30, width: 30}} />
+          </View>
 
-        <View style={{width: '80%'}}>
-          <Text style={{color: '#000', fontWeight: '900', fontSize: 13}}>
-            Invite 5 friends and earn 30 Carbon Credits
-          </Text>
-          <Text>
-            Do you have our mission? Let your friends know about the Carbon
-            games.
-          </Text>
+          <View style={{width: '80%'}}>
+            <Text style={{color: '#000', fontWeight: '900', fontSize: 13}}>
+              Invite 5 friends and earn 30 Carbon Credits
+            </Text>
+            <Text>
+              Do you have our mission? Let your friends know about the Carbon
+              games.
+            </Text>
+          </View>
         </View>
-      </View>
-      <ScrollView style={styles.scrollBarStyle}>
-        {array.map((val, index) => {
-          return (
-            <ImageBackground
-              source={planes}
-              style={styles.ImageBackContainer}
-              key={index}
-              imageStyle={styles.imageStyler}>
-              <View style={styles.topImage}>
-                <View style={styles.pillGreen}>
-                  <Text style={styles.textStyle}>1000</Text>
-                </View>
-                <View style={styles.pillRed}>
-                  <Image
-                    source={Alarm}
-                    style={{height: 10, width: 10, marginRight: 5}}
-                  />
-                  <Text style={styles.textStyle}>remaining</Text>
-                </View>
-              </View>
-              <View style={styles.ImageBody}>
-                <Text style={styles.textTitleStyle}>
-                  Carpool to save 100kg in CO2 emissions
-                </Text>
-                <Text style={styles.textStyle}>
-                  Share in 3000 Carbon credits bet made for this goal.
-                </Text>
-              </View>
-              <View style={styles.bottomImage}>
-                <View>
-                  <Text style={styles.textStyle}>Goal</Text>
-                  <Text style={styles.textTitleStyle}>100 EV Carpools</Text>
-                  <View style={styles.progressContainer}>
-                    <View style={styles.progressBar} />
+        <ScrollView style={styles.scrollBarStyle}>
+          {array.map((val, index) => {
+            return (
+              <ImageBackground
+                source={planes}
+                style={styles.ImageBackContainer}
+                key={index}
+                imageStyle={styles.imageStyler}>
+                <View style={styles.topImage}>
+                  <View style={styles.pillGreen}>
+                    <Text style={styles.textStyle}>1000</Text>
+                  </View>
+                  <View style={styles.pillRed}>
+                    <Image
+                      source={Alarm}
+                      style={{height: 10, width: 10, marginRight: 5}}
+                    />
+                    <Text style={styles.textStyle}>remaining</Text>
                   </View>
                 </View>
-                <View>
-                  <Text style={styles.textStyle}>Participating</Text>
-                  <View style={styles.avatarContainer}>
-                    <ImageBackground
-                      source={profile}
-                      style={[styles.avatar, styles.indexingAvatar]}
-                      imageStyle={styles.imageAvatar}
-                    />
-                    <ImageBackground
-                      source={notProfile}
-                      style={styles.avatar}
-                      imageStyle={styles.imageAvatar}
-                    />
-                    <View style={styles.customAvatar}>
-                      <Text style={styles.customAvatarText}>12K</Text>
+                <View style={styles.ImageBody}>
+                  <Text style={styles.textTitleStyle}>
+                    Carpool to save 100kg in CO2 emissions
+                  </Text>
+                  <Text style={styles.textStyle}>
+                    Share in 3000 Carbon credits bet made for this goal.
+                  </Text>
+                </View>
+                <View style={styles.bottomImage}>
+                  <View>
+                    <Text style={styles.textStyle}>Goal</Text>
+                    <Text style={styles.textTitleStyle}>100 EV Carpools</Text>
+                    <View style={styles.progressContainer}>
+                      <View style={styles.progressBar} />
+                    </View>
+                  </View>
+                  <View>
+                    <Text style={styles.textStyle}>Participating</Text>
+                    <View style={styles.avatarContainer}>
+                      <ImageBackground
+                        source={profile}
+                        style={[styles.avatar, styles.indexingAvatar]}
+                        imageStyle={styles.imageAvatar}
+                      />
+                      <ImageBackground
+                        source={notProfile}
+                        style={styles.avatar}
+                        imageStyle={styles.imageAvatar}
+                      />
+                      <View style={styles.customAvatar}>
+                        <Text style={styles.customAvatarText}>12K</Text>
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-            </ImageBackground>
-          );
-        })}
-      </ScrollView>
-    </View>
+              </ImageBackground>
+            );
+          })}
+        </ScrollView>
+      </View>
+    </>
   );
 };
 

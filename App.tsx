@@ -37,7 +37,7 @@ const App = () => {
           name="Second"
           component={SecondScreen}
           options={({navigation}) => ({
-            headerShown: true,
+            headerShown: false,
             title: 'Carbon Marketplace',
             headerLeft: () => (
               <Pressable onPress={() => navigation.navigate('First')}>
@@ -53,7 +53,7 @@ const App = () => {
           name="First"
           component={FirstScreen}
           options={({navigation}) => ({
-            headerShown: true,
+            headerShown: false,
             title: 'Carbon Quests',
             headerLeft: () => (
               <Pressable onPress={() => navigation.navigate('Second')}>
